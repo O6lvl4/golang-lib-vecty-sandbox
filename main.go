@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	vecty.AddStylesheet("./res/css/tailwind.css")
+
 	vecty.SetTitle("Hello Vecty!")
 	vecty.RenderBody(&PageView{})
 }
@@ -23,6 +25,9 @@ type PageView struct {
 func (p *PageView) Render() vecty.ComponentOrHTML {
 	return elem.Body(
 		vecty.Text("Hello Vecty!"),
+		vecty.Markup(
+			vecty.Class("text-xl"),
+			vecty.Class("text-red-500")),
 	)
 }
 
