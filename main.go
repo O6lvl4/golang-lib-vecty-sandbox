@@ -11,9 +11,14 @@ import (
 
 func main() {
 	vecty.AddStylesheet("./res/css/tailwind.css")
-
 	vecty.SetTitle("Hello Vecty!")
-	vecty.RenderBody(&PageView{})
+	vecty.RenderBody(&Scaffold{
+		Child: Flex(Page()),
+	})
+}
+
+func Page() *vecty.HTML {
+	return vecty.Tag("div", vecty.Text("test"))
 }
 
 // PageView is our main page component.
@@ -23,11 +28,10 @@ type PageView struct {
 
 // Render implements the vecty.Component interface.
 func (p *PageView) Render() vecty.ComponentOrHTML {
-	return elem.Body(
-		vecty.Text("Hello Vecty!"),
+	elem.UnorderedList()
+	return vecty.Tag("div", vecty.Tag("div", vecty.Tag("div")),
 		vecty.Markup(
-			vecty.Class("text-xl"),
-			vecty.Class("text-red-500")),
+			vecty.Class("flex")),
 	)
 }
 
